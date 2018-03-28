@@ -13,19 +13,13 @@ public class InstantiateCircleOfPrefabs : MonoBehaviour
 
     void Start()
     {
-        GameObject circleParent = new GameObject();
         if (prefab != this)
         {
-            for (int i = 0; i < numberOfObjects; i++) {
-                Vector3 pos = getIthPositionInCircle(i, numberOfObjects, radius) + transform.position;
-                Quaternion rot = Quaternion.identity * getIthRotationInCircle(i, numberOfObjects);
-                GameObject instance = (GameObject)Instantiate(prefab, pos, rot, circleParent.transform);
-                Debug.unityLogger.Log("Prefab instanced");
-            }
+            var circleParent = GenerateCircleOfPrefabs(prefab, transform.position, numberOfObjects, radius);
+
             #if UNITY_EDITOR
             if (savePrefab)
             {
-                
                 Object prefabSave = PrefabUtility.CreateEmptyPrefab("Assets/Prefabs/" + savedPrefabName + ".prefab");
                 PrefabUtility.ReplacePrefab(circleParent, prefabSave, ReplacePrefabOptions.ConnectToPrefab);   
             }
@@ -34,16 +28,29 @@ public class InstantiateCircleOfPrefabs : MonoBehaviour
 
     }
 
-    private Vector3 getIthPositionInCircle(int i, int numberOfObjects, float radius)
+    public static GameObject GenerateCircleOfPrefabs(GameObject prefab, Vector3 origin, int number, float radius)
+    {
+        var circleParent = new GameObject();
+        circleParent.transform.position = origin;
+        for (var i = 0; i < number; i++) {
+            Vector3 pos = GetIthPositionInCircle(i, number, radius) + origin;
+            Quaternion rot = Quaternion.identity * GetIthRotationInCircle(i, number);
+            var instance = Instantiate(prefab, pos, rot, circleParent.transform);
+            Debug.unityLogger.Log("Prefab instanced");
+        }
+        return circleParent;
+    }
+
+    private static Vector3 GetIthPositionInCircle(int i, int numberOfObjects, float radius)
     {
         float angle = i * Mathf.PI * 2 / numberOfObjects;
-        Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
+        Vector3 pos = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle)) * radius;
         return pos;
     }
 
-    private Quaternion getIthRotationInCircle(int i, int numberOfObejcts)
+    private static Quaternion GetIthRotationInCircle(int i, int numberOfObejcts)
     {
-        float angle = 360f / numberOfObjects * i;
-        return Quaternion.Euler(0, -angle, 0);
+        float angle = 360f / numberOfObejcts * i;
+        return Quaternion.Euler(0, angle, 0);
     }
 }
