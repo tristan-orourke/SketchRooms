@@ -31,6 +31,8 @@ public class GenerateRoomPrefab : MonoBehaviour
         var n = imagePaths.Length;
         var r = (float) CalculateApothem(n, panelWidth);
 
+        Debug.unityLogger.Log("Room rad " + r);
+
         //Create copy of panel prefab that can be modified
         var panel = Instantiate(panelPrefab);
 

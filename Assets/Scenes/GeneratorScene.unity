@@ -108,94 +108,57 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &160042610
+--- !u!1 &414441487
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 160042615}
-  - component: {fileID: 160042614}
-  - component: {fileID: 160042613}
-  - component: {fileID: 160042612}
-  - component: {fileID: 160042611}
+  - component: {fileID: 414441489}
+  - component: {fileID: 414441488}
   m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
+  m_Name: RoomSetGenerator
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &160042611
-AudioListener:
+--- !u!114 &414441488
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 160042610}
+  m_GameObject: {fileID: 414441487}
   m_Enabled: 1
---- !u!124 &160042612
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 160042610}
-  m_Enabled: 1
---- !u!92 &160042613
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 160042610}
-  m_Enabled: 1
---- !u!20 &160042614
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 160042610}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
---- !u!4 &160042615
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af16cd739135bb4dbc9f19a178c75cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PanelWidth: 11
+  PanelHeight: 8.5
+  PanelPrefab: {fileID: 1290271418305244, guid: fb6d33bfec02de9459622d256bc09f9f,
+    type: 2}
+  FloorPrefab: {fileID: 1600133283335944, guid: dc4c15b8d08b44d48b32f98028ffa477,
+    type: 2}
+  CeilingPrefab: {fileID: 1502939435316806, guid: 522fce9e7e514cf4fbd3b233c97cf148,
+    type: 2}
+  RoomsDirectory: Assets/Rooms
+  PlayerPrefab: {fileID: 1798138493122696, guid: ac6ef4ac4775f9a4cbe0f59eff43eec9,
+    type: 2}
+  startingRoom: TestRoom
+--- !u!4 &414441489
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 160042610}
+  m_GameObject: {fileID: 414441487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1494447584
 GameObject:
@@ -212,7 +175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1494447585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +191,12 @@ MonoBehaviour:
   PanelHeight: 8.5
   PanelPrefab: {fileID: 1290271418305244, guid: fb6d33bfec02de9459622d256bc09f9f,
     type: 2}
-  RoomFolderPath: Assets/Rooms/TestRoom
+  FloorPrefab: {fileID: 1600133283335944, guid: dc4c15b8d08b44d48b32f98028ffa477,
+    type: 2}
+  CeilingPrefab: {fileID: 1502939435316806, guid: 522fce9e7e514cf4fbd3b233c97cf148,
+    type: 2}
+  RoomsDirectory: Assets/Rooms
+  RoomName: TestRoom
 --- !u!4 &1494447586
 Transform:
   m_ObjectHideFlags: 0
@@ -240,7 +208,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1961943405
 GameObject:
@@ -319,5 +287,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
