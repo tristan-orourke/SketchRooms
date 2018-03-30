@@ -224,6 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb73b00790aad440a59fb132cacb69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PanelWidth: 11
+  PanelHeight: 8.5
   PanelPrefab: {fileID: 1290271418305244, guid: fb6d33bfec02de9459622d256bc09f9f,
     type: 2}
   RoomFolderPath: Assets/Rooms/TestRoom
