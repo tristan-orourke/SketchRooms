@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class GenerateRoomPrefab : MonoBehaviour
 {
-    [Tooltip("px")] public int ImageWidth = 1000;
-    [Tooltip("px")] public int ImageHeight = 1000;
     public float PanelWidth = 11f;
     public float PanelHeight = 8.5f;
     [Tooltip("Should be 1x1 unit square")] public GameObject PanelPrefab;
@@ -21,11 +19,11 @@ public class GenerateRoomPrefab : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    var room = GenerateRoom(RoomsDirectory, RoomName, ImageWidth, ImageHeight, PanelWidth, PanelHeight, PanelPrefab, FloorPrefab, CeilingPrefab, transform.position);
+	    var room = GenerateRoom(RoomsDirectory, RoomName, PanelWidth, PanelHeight, PanelPrefab, FloorPrefab, CeilingPrefab, transform.position);
         room.transform.SetParent(transform);
 	}
 
-    public static GameObject GenerateRoom(string roomsDirectory, string roomName, int imgWidth, int imgHeight, float panelWidth, float panelHeight, GameObject panelPrefab, GameObject floorPrefab, GameObject ceilingPrefab, Vector3 origin)
+    public static GameObject GenerateRoom(string roomsDirectory, string roomName, float panelWidth, float panelHeight, GameObject panelPrefab, GameObject floorPrefab, GameObject ceilingPrefab, Vector3 origin)
     {
         var roomPath = Path.Combine(roomsDirectory, roomName);
         var imagePaths = GetImagePaths(roomPath);
@@ -46,7 +44,7 @@ public class GenerateRoomPrefab : MonoBehaviour
         room.name = roomName;
 
         //Add images to room panels
-        AddImagesToRoomPanels(room, imagePaths, imgWidth, imgHeight);
+        AddImagesToRoomPanels(room, imagePaths);
 
         //Destroy panel, or it will be left in scene
         Destroy(panel);
@@ -56,7 +54,7 @@ public class GenerateRoomPrefab : MonoBehaviour
         return room;
     }
 
-    private static void AddImagesToRoomPanels(GameObject room, string[] imagePaths, int imgWidth, int imgHeight)
+    private static void AddImagesToRoomPanels(GameObject room, string[] imagePaths)
     {
         if (imagePaths.Length != room.transform.childCount)
         {
@@ -72,13 +70,13 @@ public class GenerateRoomPrefab : MonoBehaviour
             var imageName = Path.GetFileNameWithoutExtension(imagePath);
             panel.name = Path.Combine(room.name, imageName);
 
-            panel.GetComponent<Renderer>().material = GenerateMaterialFromImagePath(imagePath, imgWidth, imgHeight);
+            panel.GetComponent<Renderer>().material = GenerateMaterialFromImagePath(imagePath);
         }
     }
 
-    private static Material GenerateMaterialFromImagePath(string imagePath, int width, int height)
+    private static Material GenerateMaterialFromImagePath(string imagePath)
     {
-        var texture = new Texture2D(width, height);
+        var texture = new Texture2D(1,1);
         var imgData = File.ReadAllBytes(imagePath);
         texture.LoadImage(imgData);
 
