@@ -36,7 +36,6 @@ public class InstantiateCircleOfPrefabs : MonoBehaviour
             Vector3 pos = prefab.transform.position + GetIthPositionInCircle(i, number, radius) + origin;
             Quaternion rot = Quaternion.identity * GetIthRotationInCircle(i, number);
             var instance = Instantiate(prefab, pos, rot, circleParent.transform);
-            Debug.unityLogger.Log("Prefab instanced");
         }
         return circleParent;
     }
